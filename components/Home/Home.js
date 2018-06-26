@@ -9,77 +9,35 @@ class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      photos: [
-        {
-          id: 1,
-          title: 'Hey'
-        },
-        {
-          id: 2,
-          title: `It's a me`
-        },
-        {
-          id: 3,
-          title: 'Derp'
-        },
-        {
-          id: 4,
-          title: 'Another'
-        },
-        {
-          id: 5,
-          title: 'Yes'
-        },
-        {
-          id: 6,
-          title: 'What'
-        },
-        {
-          id: 7,
-          title: 'Typo'
-        },
-        {
-          id: 8,
-          title: 'Define'
-        },
-      ],
-      popular: [
-        {
-          id: 1,
-          title: 'Hey'
-        },
-        {
-          id: 2,
-          title: `It's a me`
-        },
-        {
-          id: 3,
-          title: 'Derp'
-        },
-        {
-          id: 4,
-          title: 'Another'
-        },
-      ],
-      testImg: [],
+      fetchedPhotos: [],
     }
   }
   componentDidMount() {
     let imagesObj = database.ref().child('images');
     imagesObj.once('value', (snapshot) => {
       this.setState({
-        testImg: Object.values(snapshot.val())
+        fetchedPhotos: Object.values(snapshot.val())
       }, () => {
         console.log(this.state);
       })
     });
   }
 
+  onImagePressed = (data) => {
+    const countryUppercase = data.country.toUpperCase();
+    this.props.navigation.navigate('Destination', {
+      imgData: data,
+      countryUppercase
+    });
+  }
+
   renderPhoto = (data, index) => {
-    console.log('data', data.index);
     if(data.index % 2 === 0) {
       return (
-        <View style={[styles.cardStyle, {flexDirection: 'row', flex: 1}]}>
+        <TouchableOpacity
+          style={[styles.cardStyle, {flexDirection: 'row', flex: 1}]}
+          onPress={() => this.onImagePressed(data.item)}
+        >
           <Image
             borderTopLeftRadius={4}
             borderBottomLeftRadius={4}
@@ -92,11 +50,14 @@ class HomeScreen extends React.Component {
             <Text style={[fontStyle.regular, styles.desc]}>{data.item.description}</Text>
             <Text style={[fontStyle.bold, styles.price]}>FROM ${data.item.price}</Text>
           </View>
-        </View>
+        </TouchableOpacity>
       )  
     } else {
       return (
-        <View style={[styles.cardStyle, {flexDirection: 'row', flex: 1}]}> 
+        <TouchableOpacity 
+          style={[styles.cardStyle, {flexDirection: 'row', flex: 1}]}
+          onPress={() => this.onImagePressed(data.item)}
+        > 
           <View style={{padding: 10, width: '50%'}}>
             <Text style={[fontStyle.bold, styles.country]}>{data.item.country}</Text>
             <Text style={[fontStyle.bold, styles.place]}>{data.item.place}</Text>
@@ -109,14 +70,17 @@ class HomeScreen extends React.Component {
             style={{width: '50%', height: 150}}
             source={{uri: data.item.url}}
           />
-        </View>
+        </TouchableOpacity>
       )
     }
   }
 
   renderPopular = (data) => {
     return (
-      <View style={styles.cardStyle}>
+      <TouchableOpacity 
+        style={styles.cardStyle}
+        onPress={() => this.onImagePressed(data.item)}
+      >
         <Image 
           borderTopLeftRadius={4}
           borderTopRightRadius={4}
@@ -129,7 +93,7 @@ class HomeScreen extends React.Component {
           <Text style={[fontStyle.regular, styles.desc, {width: 240}]}>{data.item.description}</Text>
           <Text style={[fontStyle.bold, styles.price]}>FROM ${data.item.price}</Text>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   }
   
@@ -145,7 +109,7 @@ class HomeScreen extends React.Component {
             <FlatList
               horizontal
               extraData={this.state}
-              data={this.state.testImg}
+              data={this.state.fetchedPhotos}
               renderItem={(url) => this.renderPopular(url)}
               keyExtractor={(item, index) => index.toString()}
             />
@@ -153,7 +117,7 @@ class HomeScreen extends React.Component {
             <Text style={[styles.sectionTitle, fontStyle.bold, {marginTop: 20}]}>Discover</Text>
             <FlatList
               extraData={this.state}
-              data={this.state.testImg}
+              data={this.state.fetchedPhotos}
               renderItem={(item, index) => this.renderPhoto(item, index)}
               keyExtractor={(item, index) => index.toString()}
               numColumns={1}

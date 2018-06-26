@@ -13,6 +13,9 @@ const fontStyle = StyleSheet.create({
   light: {
     fontFamily: 'Lato-Light',
   },
+  superLight: {
+    fontFamily: 'Lato-Hairline',
+  },
   logo: {
     fontFamily: 'Pacifico-Regular'
   }

@@ -1,12 +1,13 @@
-import React from 'react';
-import { View, Text } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import HomeScreen from './components/Home/Home';
+import DestinationScreen from './components/Destination/Destination';
 
 const RootStack = createStackNavigator({
   Home: {
     screen: HomeScreen,
-    
+  },
+  Destination: {
+    screen: DestinationScreen,
   },
 },
 {
