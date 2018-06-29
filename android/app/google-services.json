@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "507579161260",
+    "firebase_url": "https://travelly-6e93f.firebaseio.com",
+    "project_id": "travelly-6e93f",
+    "storage_bucket": "travelly-6e93f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:507579161260:android:458218932a90098c",
+        "android_client_info": {
+          "package_name": "com.calendarapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "507579161260-9fn5a66kkde6hhta2c3mcp9401hl83aq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3gq1zd8u_52pswPLUipv0px6IMLQpdOo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
