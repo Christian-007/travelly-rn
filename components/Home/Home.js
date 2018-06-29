@@ -125,25 +125,23 @@ class HomeScreen extends React.Component {
   }
 
   renderContentLoader = () => {
-    let contents = [1,2,3].map((name) => {
-      return(
-        <Animated.View key={name} style={{margin: 10, borderWidth: 1, borderRadius: 4, borderColor: '#ecebeb', width: 260, opacity: this.state.fadeAnim}}>
-          <Svg height="370" width="260">
-            <Rect x="0" y="0" rx="4" ry="4" width="260" height="260" fill="#ecebeb" /> 
-            <Rect x="10" y="270" rx="4" ry="4" width="70" height="6" fill="#ecebeb" /> 
-            <Rect x="10" y="283" rx="4" ry="4" width="80" height="8" fill="#ecebeb" />
-            <Rect x="10" y="305" rx="4" ry="4" width="240" height="6" fill="#ecebeb" />
-            <Rect x="10" y="318" rx="4" ry="4" width="240" height="6" fill="#ecebeb" /> 
-            <Rect x="10" y="350" rx="4" ry="4" width="80" height="6" fill="#ecebeb" /> 
-          </Svg>
-        </Animated.View>   
-      )
-    });
-    return (
+    const contents = Array.from({length: 3});
+    return(
       <ScrollView horizontal={true}>
-        {contents}
+        {contents.map((_,i) =>
+          <Animated.View key={i} style={{margin: 10, borderWidth: 1, borderRadius: 4, borderColor: '#ecebeb', width: 260, opacity: this.state.fadeAnim}}>
+            <Svg height="370" width="260">
+              <Rect x="0" y="0" rx="4" ry="4" width="260" height="260" fill="#ecebeb" /> 
+              <Rect x="10" y="270" rx="4" ry="4" width="70" height="6" fill="#ecebeb" /> 
+              <Rect x="10" y="283" rx="4" ry="4" width="80" height="8" fill="#ecebeb" />
+              <Rect x="10" y="305" rx="4" ry="4" width="240" height="6" fill="#ecebeb" />
+              <Rect x="10" y="318" rx="4" ry="4" width="240" height="6" fill="#ecebeb" /> 
+              <Rect x="10" y="350" rx="4" ry="4" width="80" height="6" fill="#ecebeb" /> 
+            </Svg>
+          </Animated.View> 
+        )}
       </ScrollView>
-    );  
+    )
   };
 
   renderListLoader = () => {

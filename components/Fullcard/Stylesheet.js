@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 0,
     top: 0,
-    height: '30%',
+    height: '100%',
     width: '100%'
   },
   darkOpacity: {
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     left: 0,
     top: 0,
     width: '100%',
-    height: '30%',
+    height: '100%',
     backgroundColor: '#000',
     opacity: 0.2
   },
@@ -28,10 +28,16 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     color: '#fff',
   },
+  price: {
+    marginTop: 20,
+    fontSize: 30,
+    letterSpacing: 1,
+    color: '#fff',
+  },
   destinationDetails: {
     position: 'absolute',
     left: 0,
-    top: 50,
+    bottom: 20,
     width: '100%',
     padding: 20,
   },
@@ -56,6 +62,14 @@ const styles = StyleSheet.create({
   },
   fill: {
     flex: 1,
+  },
+  arrowBtn: {
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'white',
+    borderRadius: 20,
+    paddingTop: 5, paddingBottom: 5,
+    paddingLeft: 10, paddingRight: 10,
   },
 });
 

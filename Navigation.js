@@ -1,6 +1,7 @@
 import { createStackNavigator } from 'react-navigation';
 import HomeScreen from './components/Home/Home';
 import DestinationScreen from './components/Destination/Destination';
+import FullcardScreen from './components/Fullcard/Fullcard';
 
 const RootStack = createStackNavigator({
   Home: {
@@ -8,6 +9,9 @@ const RootStack = createStackNavigator({
   },
   Destination: {
     screen: DestinationScreen,
+  },
+  Fullcard: {
+    screen: FullcardScreen,
   },
 },
 {
