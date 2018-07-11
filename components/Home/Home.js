@@ -31,6 +31,42 @@ class HomeScreen extends React.Component {
     this.animate();
   }
 
+  firebaseNotif = () => {
+    const FCM = firebase.messaging();
+    const rtdbRef = firebase.database();
+
+
+    FCM.requestPermission()
+    .then(() => {
+      // User has authorised  
+      console.log('Authorised user!');
+      FCM.getToken().then(currentToken => {
+        if (currentToken) {
+          console.log('Token', currentToken);
+          rtdbRef.ref('users/dY1grt123/notifTokens').set({
+            [currentToken]: true
+          }, err => {
+            if (err) {
+              console.log('error occurred:', err);
+            } else {
+              console.log('successfully write!');
+            }
+          })
+        } else {
+          // Show permission request.
+          console.log('No Instance ID token available. Request permission to generate one.');
+        }
+      }).catch(err => {
+        console.log('An error occurred while retrieving token. ', err);
+        
+      });
+    })
+    .catch(error => {
+      // User has rejected permissions
+      console.log('Reject permissions!');
+    });
+  }
+
   animate = () => {
     this.state.fadeAnim.setValue(0.7)
     Animated.timing(                  // Animate over time
@@ -187,6 +223,12 @@ class HomeScreen extends React.Component {
         <HeaderBar />
         <ScrollView>
           <View style={{justifyContent: 'center', paddingLeft: 20, paddingRight: 20 }}>
+            <TouchableOpacity 
+              style={{backgroundColor: 'blue', padding: 10, width: 100, height: 35}}
+              onPress={this.firebaseNotif}
+            >
+              <Text style={{color: 'white'}}>Push Notif</Text>
+            </TouchableOpacity>
             <Text style={[styles.sectionTitle, fontStyle.bold]}>Most Popular</Text>
             {this.state.loading && this.renderContentLoader()}
             <FlatList

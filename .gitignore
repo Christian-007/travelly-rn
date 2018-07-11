@@ -6,6 +6,9 @@
 config/constants.js
 android/app/google-services.json
 
+# Firebase Cloud Functions
+functions/node_modules/
+
 # Xcode
 #
 build/
