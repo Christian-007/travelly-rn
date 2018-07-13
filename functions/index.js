@@ -60,7 +60,13 @@ exports.sendFollowerNotification = functions.database.ref('/followers/{followedU
         notification: {
           title: 'You have a new follower!',
           body: `${follower.val().name} is now following you.`,
-          sound: 'default'
+          sound: 'default',
+          icon: 'ic_notif_v11',
+          color: '#193EB1'
+        },
+        data: {
+          title: 'You have a new follower!',
+          body: `${follower.val().name} is now following you.`
         }
       };
 
