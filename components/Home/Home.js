@@ -5,6 +5,7 @@ import fontStyle from '../../common/FontStyle';
 import HeaderBar from '../../common/HeaderBar';
 import firebase from 'react-native-firebase';
 import Svg, { Rect } from 'react-native-svg';
+import SearchBar from './SearchBar';
 
 class HomeScreen extends React.Component {
   constructor(props) {
@@ -89,6 +90,11 @@ class HomeScreen extends React.Component {
       imgData: data,
       countryUppercase
     });
+  }
+
+  onSearchBarPressed = () => {
+    this.props.navigation.navigate('SearchScreen');
+    // alert('hey')
   }
 
   renderPhoto = (data, index) => {
@@ -223,12 +229,13 @@ class HomeScreen extends React.Component {
         <HeaderBar />
         <ScrollView>
           <View style={{justifyContent: 'center', paddingLeft: 20, paddingRight: 20 }}>
-            <TouchableOpacity 
+            {/* <TouchableOpacity 
               style={{backgroundColor: 'blue', padding: 10, width: 100, height: 35}}
               onPress={this.firebaseNotif}
             >
               <Text style={{color: 'white'}}>Push Notif</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
+            <SearchBar onSearchPress={this.onSearchBarPressed}/>
             <Text style={[styles.sectionTitle, fontStyle.bold]}>Most Popular</Text>
             {this.state.loading && this.renderContentLoader()}
             <FlatList

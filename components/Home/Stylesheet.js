@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontWeight: '700',
-    fontSize: 20,
+    fontSize: 25,
     color: '#000',
   },
   cardStyle: {
