@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 0,
     top: 0,
-    height: '30%',
+    height: '100%',
     width: '100%'
   },
   darkOpacity: {
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     left: 0,
     top: 0,
     width: '100%',
-    height: '30%',
+    height: '100%',
     backgroundColor: '#000',
     opacity: 0.2
   },
@@ -57,6 +57,24 @@ const styles = StyleSheet.create({
   fill: {
     flex: 1,
   },
+
+  /* Travel Detail Column */
+  travelDetailCol: {
+    backgroundColor: '#fff',
+    paddingTop: 30,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingBottom: 20,
+  },
+  travelDateTitle: {
+    fontSize: 14,
+    color: '#808080',
+    marginBottom: 5
+  },
+  travelDateSubtitle: {
+    fontSize: 18,
+    color: '#000'
+  }
 });
 
 export default styles;

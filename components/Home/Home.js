@@ -6,6 +6,7 @@ import HeaderBar from '../../common/HeaderBar';
 import firebase from 'react-native-firebase';
 import Svg, { Rect } from 'react-native-svg';
 import SearchBar from './SearchBar';
+import TagList from './TagList';
 
 class HomeScreen extends React.Component {
   constructor(props) {
@@ -169,7 +170,7 @@ class HomeScreen extends React.Component {
   renderContentLoader = () => {
     const contents = Array.from({length: 3});
     return(
-      <ScrollView horizontal={true}>
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         {contents.map((_,i) =>
           <Animated.View key={i} style={{margin: 10, borderWidth: 1, borderRadius: 4, borderColor: '#ecebeb', width: 260, opacity: this.state.fadeAnim}}>
             <Svg height="370" width="260">
@@ -244,9 +245,12 @@ class HomeScreen extends React.Component {
               data={this.state.fetchedPhotos}
               renderItem={(url) => this.renderPopular(url)}
               keyExtractor={(item, index) => index.toString()}
+              showsHorizontalScrollIndicator={false}
             />
 
-            <Text style={[styles.sectionTitle, fontStyle.bold, {marginTop: 20}]}>Discover</Text>
+            <TagList />
+
+            <Text style={[styles.sectionTitle, fontStyle.bold, {marginTop: 10}]}>Discover</Text>
             {this.state.loading && this.renderListLoader()}
             <FlatList
               extraData={this.state}

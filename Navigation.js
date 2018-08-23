@@ -7,6 +7,8 @@ import FullcardScreen from './components/Fullcard/Fullcard';
 import NotificationScreen from './components/NotificationView/NotificationView';
 import SearchScreen from './components/SearchScreen/SearchScreen';
 import Calendar from './components/Calendar/CalendarComponent';
+import WebViewPage from './components/WebViewPage/WebViewPage';
+import WebViewComponent from './components/WebViewPage/WebViewComponent';
 
 const HomeStack = createStackNavigator({
   Home: {
@@ -65,7 +67,40 @@ const CalendarStack = createStackNavigator({
   }
 });
 
+const WebViewStack = createStackNavigator({
+  WebViewScreen: {
+    screen: WebViewPage,
+    navigationOptions: () => ({
+      title: 'Webview',
+    }),
+  },
+  WebViewModal: {
+    screen: WebViewComponent,
+    navigationOptions: () => ({
+      title: 'Webview Modal',
+    }),
+  }
+});
+
+/* Hide tabBar on Destination.js */
+WebViewStack.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
+  if (navigation.state.index === 1) {
+    tabBarVisible = false;
+  }
+
+  return {
+    tabBarVisible,
+  };
+};
+
 const TabNavigation = createBottomTabNavigator({
+  WebViewScreen: {
+    screen: WebViewStack,
+    navigationOptions: {
+      title: 'Webview'
+    }
+  },
   Home: {
     screen: HomeStack,
     navigationOptions: {
@@ -83,7 +118,7 @@ const TabNavigation = createBottomTabNavigator({
     navigationOptions: {
       title: 'Calendar'
     }
-  }
+  },
 },
 {  
   navigationOptions: ({ navigation }) => ({
@@ -96,6 +131,8 @@ const TabNavigation = createBottomTabNavigator({
         iconName = `notifications`;
       } else if (routeName === 'Calendar') {
         iconName = `date-range`;
+      } else if (routeName === 'WebViewScreen') {
+        iconName = `web`;
       }
 
       // You can return any component that you like here! We usually use an
